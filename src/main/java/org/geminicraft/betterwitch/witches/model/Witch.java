@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import org.geminicraft.betterwitch.Pathfinders.PathfinderGoalTest;
+import org.geminicraft.betterwitch.pathfinders.PathfinderGoalTest;
 import org.geminicraft.betterwitch.witches.abilities.WitchAbilities;
 import org.geminicraft.betterwitch.witches.WitchPotionEffect;
 import org.mineacademy.fo.Common;
