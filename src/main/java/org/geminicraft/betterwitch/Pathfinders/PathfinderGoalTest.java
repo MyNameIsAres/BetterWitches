@@ -5,6 +5,8 @@ import org.mineacademy.fo.Common;
 
 import java.util.EnumSet;
 
+// This file is a mess, requires clean up.
+
 public class PathfinderGoalTest extends PathfinderGoal {
 
     private final EntityInsentient testWitch;
@@ -29,6 +31,7 @@ public class PathfinderGoalTest extends PathfinderGoal {
 
     @Override
     public boolean a() {
+        Common.log("ffs");
         Common.log("Entering A..");
         // Will start the pathfinding goal if it is true
         // Runs every tick (0.05 seconds)
@@ -40,18 +43,21 @@ public class PathfinderGoalTest extends PathfinderGoal {
             Common.log("Is player null");
             return false;
         } else if (this.testWitch.getDisplayName() == null) {
-            Common.log("THis one?");
+//            Common.log("THis one?");
             return false;
-        } else if (!(this.testWitch.getDisplayName().toString().contains(this.player.getName()))) {
-//            Common.log("Thiiiiis one");
-            return false;
-        } else if (this.player.h(this.testWitch) > (double) (this.distanceOwnerAndCreature) * (this.distanceOwnerAndCreature)) {
+        }
+//        else if (!(this.testWitch.getDisplayName().toString().contains(this.player.getName()))) {
+////            Common.log("Thiiiiis one");
+//            return false;
+//        }
+        else if (this.player.h(this.testWitch) > (double) (this.distanceOwnerAndCreature) * (this.distanceOwnerAndCreature)) {
+
 
             // if the distance from the pet to the player is greater than whatever we set in distanceownerandcreature,
             // let's go ahead and set to false. we do not want the witch to fllow us.
             testWitch.setPosition(this.player.locX(), this.player.locY(), this.player.locZ());
 
-            Common.log("Which one fucking is it");
+//            Common.log("Which one fucking is it");
             return false;
         } else {
             // follow the owner
@@ -68,7 +74,7 @@ public class PathfinderGoalTest extends PathfinderGoal {
             this.y = this.player.locY();
             this.z = this.player.locZ();
 
-            Common.log("Is this called?");
+//            Common.log("Is this called?");
 
             return true; // <-- it runs c
         }
@@ -78,7 +84,7 @@ public class PathfinderGoalTest extends PathfinderGoal {
     // once it is true it is going to run c(), only once.
     // it is going to run c(), so long as b() is true
     public void c() {
-        Common.log("Entering C..");
+//        Common.log("Entering C..");
 
         // runner (or bukkit runnable)
         this.testWitch.getNavigation().a(this.x, this.y, this.z, this.speed);
@@ -86,7 +92,7 @@ public class PathfinderGoalTest extends PathfinderGoal {
 
 
     public boolean b() {
-        Common.log("Entering B..");
+//        Common.log("Entering B..");
 
         // this runs after c()
         // runs every tick as long as its true
@@ -101,7 +107,7 @@ public class PathfinderGoalTest extends PathfinderGoal {
     }
 
     public void d() {
-        Common.log("Is this ever run");
+//        Common.log("Is this ever run");
         // runs when b() returns false
         this.player = null;
     }
