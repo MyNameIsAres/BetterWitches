@@ -38,16 +38,9 @@ public class RecipeConfig extends YamlSectionConfig {
     protected void onLoadFinish() {
         testProperty = getString("Test");
     }
-
-//
-//    public static RecipeConfig getCache(String name) {
-//        RecipeConfig config = cacheMap.get
-//    }
     
-
     public void setTestProperty(String testProperty) {
         this.testProperty = testProperty;
-
         save("Test", "Hello World");
     }
 

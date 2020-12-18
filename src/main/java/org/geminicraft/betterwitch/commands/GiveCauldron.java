@@ -1,18 +1,19 @@
 package org.geminicraft.betterwitch.commands;
 
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.geminicraft.betterwitch.cauldron.CauldronBase;
+import org.geminicraft.betterwitch.BetterWitchPlugin;
+import org.geminicraft.betterwitch.cauldron.CauldronRegister;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.command.SimpleCommand;
-import org.mineacademy.fo.menu.model.ItemCreator;
-import org.mineacademy.fo.remain.CompMaterial;
 
 public class GiveCauldron extends SimpleCommand {
+
+    BetterWitchPlugin plugin;
 
     // TODO: Redesign after config + types are introduced
     public GiveCauldron() {
         super("cauldron");
+
+
     }
 
     // TODO: Better plan
@@ -30,15 +31,56 @@ public class GiveCauldron extends SimpleCommand {
 
 
      */
+
+
     @Override
     protected void onCommand() {
         checkConsole();
 
+//        CauldronStorage storage = new CauldronStorage(plugin);
+//
+//        storage.fetchMap();
+
+//        cache.getCauldronMap();
+
         Common.log("Item Logged");
+        CauldronRegister register = CauldronRegister.getInstance();
+        final String param = args[0].toLowerCase();
 
-        CauldronBase base = new CauldronBase("Test");
+        if ("new".equals(param)) {
+            checkArgs(2, "You must also set the class name");
+            final String className = args[1];
 
-        Common.log(base.getName());
+            Common.log(className);
+
+//            CauldronRegister register = CauldronRegister.getInstance();
+            register.addToStrictList(className);
+
+
+            tell("&6Class " + className + " has been created!");
+
+        }
+
+
+//        register.getListCount();
+
+//====================================
+
+
+//        CauldronBase base = new CauldronBase("Test");
+//
+////        base.addToList(base);
+////
+//        base.setCauldronNameFile(base.getName());
+//
+//        base.fetchCauldronFiles(base);
+//
+//        Common.log(base.getName());
+
+
+//        ItemCreator.of(new CauldronBase()).build().make();
+//
+//        Common.log(base.getName());
 //
 //        final Player player = getPlayer();
 //        CauldronBase cauldron = new CauldronBase(CompMaterial.CAULDRON.toItem(), "Test", new String[]{"Test"});

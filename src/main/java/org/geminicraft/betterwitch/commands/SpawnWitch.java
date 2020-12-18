@@ -24,7 +24,7 @@ public class SpawnWitch extends SimpleCommand {
         final Player player = getPlayer();
         final Location location = player.getLocation();
 //        final WorldServer world = ((CraftWorld) player.getWorld()).getHandle(); <-- Can be removed??
-        final Witch firstTest = new FirstTestWitch(location, player, "test", EntityType.WITCH);
+        final Witch firstTest = new FirstTestWitch(location, player, "[Strong] &cFire Witch", EntityType.WITCH);
 
         firstTest.spawnWitch(location);
         player.sendMessage("Creature spawned");
