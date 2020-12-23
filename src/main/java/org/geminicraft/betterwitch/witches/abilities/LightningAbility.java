@@ -8,9 +8,9 @@ import org.mineacademy.fo.Common;
 import org.mineacademy.fo.MathUtil;
 import org.mineacademy.fo.RandomUtil;
 
-public class TestWitchLightning extends WitchAbilities {
+public class LightningAbility extends WitchAbilities {
 
-    public TestWitchLightning() {
+    public LightningAbility() {
         super("Lightning Strike");
     }
 
@@ -18,7 +18,7 @@ public class TestWitchLightning extends WitchAbilities {
     public void onWitchDamaged(Witch witch, EntityDamageByEntityEvent event) {
         if (RandomUtil.chance(100) && event.getDamager() instanceof Player) {
             final Player attacker = (Player) event.getDamager();
-
+            
             attacker.getWorld().strikeLightningEffect(attacker.getLocation());
             attacker.setHealth(MathUtil.range(attacker.getHealth() - 4, 0, 20));
 

@@ -1,4 +1,4 @@
-package org.geminicraft.betterwitch.Pathfinders;
+package org.geminicraft.betterwitch.pathfinders;
 
 import net.minecraft.server.v1_16_R2.*;
 import org.mineacademy.fo.Common;

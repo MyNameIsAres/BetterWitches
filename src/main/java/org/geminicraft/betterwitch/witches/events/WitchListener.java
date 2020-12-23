@@ -13,7 +13,7 @@ import org.geminicraft.betterwitch.witches.model.Witch;
 import org.mineacademy.fo.Common;
 
 public class WitchListener implements Listener {
-    
+
     @EventHandler
     public void onWitchDeath(final EntityDeathEvent event) {
         final Witch witch = findWitch(event.getEntity());
@@ -30,7 +30,6 @@ public class WitchListener implements Listener {
         final Entity victim = event.getEntity();
 
         if (!(damager instanceof Player) || !(victim instanceof CraftWitch)) {
-            Common.log("**DEBUG** Failed on WitchDamaged");
             return;
         }
 
