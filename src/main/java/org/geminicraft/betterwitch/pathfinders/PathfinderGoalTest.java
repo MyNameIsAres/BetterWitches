@@ -1,12 +1,13 @@
 package org.geminicraft.betterwitch.pathfinders;
 
 import net.minecraft.server.v1_16_R2.*;
+import org.geminicraft.betterwitch.AIGoalsAnnotation;
 import org.mineacademy.fo.Common;
 
 import java.util.EnumSet;
 
 // This file is a mess, requires clean up.
-
+@AIGoalsAnnotation(name = "testAbility", description = "Please fucking work")
 public class PathfinderGoalTest extends PathfinderGoal {
 
     private final EntityInsentient testWitch;
@@ -38,6 +39,7 @@ public class PathfinderGoalTest extends PathfinderGoal {
 
 
         this.player = this.testWitch.getGoalTarget();
+        Common.log(testWitch.getGoalTarget() + " just testing to see if this exists at all tbh");
 //        Common.log(this.player.toString());
         if (this.player == null) {
             Common.log("Is player null");

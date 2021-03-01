@@ -33,6 +33,15 @@ public class CauldronRegister {
         return null;
     }
 
+    public void getCauldronFoundationList() {
+        for (File file : FileUtil.getFiles("cauldrons", "yml")) {
+            
+            final CauldronFoundation foundation = new CauldronFoundation(file.getName());
+
+            cauldronBaseList.add(foundation);
+        }
+    }
+
     // Utility tool for development  - to be moved
     public void getListCount() {
         for (File file : FileUtil.getFiles("cauldrons", "yml")) {

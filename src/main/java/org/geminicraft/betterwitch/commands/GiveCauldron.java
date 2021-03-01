@@ -5,6 +5,7 @@ import org.geminicraft.betterwitch.cauldron.CauldronRegister;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.command.SimpleCommand;
 
+
 public class GiveCauldron extends SimpleCommand {
 
     BetterWitchPlugin plugin;
@@ -15,24 +16,7 @@ public class GiveCauldron extends SimpleCommand {
 
 
     }
-
-    // TODO: Better plan
-    /*
-
-       Create a GUI to create different cauldrons
-       Each cauldron is created from a list of cauldrons where you loop over each individual  CauldronBase
-       class. You then get properties like Name and other things from that list.
-       Something like
-       List<CauldronBase> cauldrons = new ArrayList<>;
-
-       cauldrons.name
-       cauldrons.lore
-
-
-
-     */
-
-
+    
     @Override
     protected void onCommand() {
         checkConsole();

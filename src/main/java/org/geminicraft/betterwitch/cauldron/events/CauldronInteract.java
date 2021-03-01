@@ -1,14 +1,22 @@
 package org.geminicraft.betterwitch.cauldron.events;
 
+import net.minecraft.server.v1_16_R2.DataWatcher;
+import net.minecraft.server.v1_16_R2.EntityItem;
+import net.minecraft.server.v1_16_R2.PacketPlayOutEntityMetadata;
+import net.minecraft.server.v1_16_R2.PacketPlayOutSpawnEntity;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +45,42 @@ public class CauldronInteract implements Listener {
 
     }
 
+    @EventHandler
+    public void onThrow(PlayerDropItemEvent event) {
+//        event.setCancelled(true);
+
+//        Item item = event.getItemDrop();
+
+        Common.log("Threw item");
+
+        Player player = event.getPlayer();
+        double x = player.getLocation().getX();
+        double y = player.getLocation().getY();
+        double z = player.getLocation().getZ();
+
+//        PacketPlayOutSpawnEntity packet = new PacketPlayOutSpawnEntity();
+
+        ItemStack item = new ItemStack(Material.DIAMOND);
+
+//
+//        EntityItem spawned = new EntityItem(((CraftWorld) player.getWorld()).getHandle(), x, y, z);
+//        DataWatcher watcher = new DataWatcher(spawned);
+//        spawned.setLocation(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(), 0, 0);
+//        spawned.setItemStack(CraftItemStack.poasNMSCopy(item));
+//        PacketPlayOutSpawnEntity packet_item = new PacketPlayOutSpawnEntity(spawned, 2);
+//        PacketPlayOutEntityMetadata data = new PacketPlayOutEntityMetadata(spawned.getId(), spawned.getDataWatcher(), true);
+//
+//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet_item);
+//
+//
+//        Common.log(packet_item.toString() + " Test item");
+//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(data);
+
+
+//        spawned.get
+
+
+    }
 
     public static String getStringLocation(final Location location) {
         return location.getWorld().getName() + "\\" + location.getBlockX() + "\\" + location.getBlockY() + "\\" + location.getBlockZ();
@@ -52,6 +96,8 @@ public class CauldronInteract implements Listener {
         final String cauldronName = item.getItemMeta().getDisplayName().replaceAll("§\\d", "");
 
         CauldronFoundation test = register.getCauldron(cauldronName);
+
+        test.setName("Bob");
 
         try {
             storage.getStringLocationMap().put(getStringLocation(block.getLocation()), test.getName());
@@ -140,7 +186,7 @@ public class CauldronInteract implements Listener {
                 return;
             }
         } catch (NullPointerException exception) {
-            Common.log("Null was thrown!");
+//            Common.log("Null was thrown!");
         }
     }
 
@@ -196,7 +242,7 @@ public class CauldronInteract implements Listener {
 
             }
         } catch (NullPointerException exception) {
-            Common.log("Null was thrown!");
+//            Common.log("Null was thrown!");
         }
     }
 

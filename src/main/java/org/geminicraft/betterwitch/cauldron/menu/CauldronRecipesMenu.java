@@ -76,13 +76,9 @@ public class CauldronRecipesMenu extends MenuPagged<CustomItem> implements Liste
 
         if (click.isLeftClick()) {
 
-
-            if (hasClicked == true) {
-                Common.log("Test222");
-            }
-
             hasClicked = true;
             cauldronCache.setClickedItem(item);
+
 
             player.closeInventory();
         } else if (click.isRightClick()) {
