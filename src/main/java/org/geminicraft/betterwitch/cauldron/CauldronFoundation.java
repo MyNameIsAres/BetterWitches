@@ -10,11 +10,17 @@ import org.mineacademy.fo.settings.YamlConfig;
 
 import java.util.List;
 
-public class CauldronFoundation extends YamlConfig implements ConfigSerializable {
+public class CauldronFoundation extends YamlConfig {
 
-    @Setter
+
     @Getter
     public String name;
+
+    public void setName(String name) {
+        this.name = name;
+
+        save("Name", name);
+    }
 
     @Getter
     @Setter
@@ -28,9 +34,9 @@ public class CauldronFoundation extends YamlConfig implements ConfigSerializable
     @Getter
     public CompMaterial material;
 
+    public Object test;
 
     public CauldronFoundation(String name) {
-
         this.name = name;
 
         loadConfiguration("cauldron-config.yml", "cauldrons/" + name + (!name.endsWith(".yml") ? ".yml" : ""));
@@ -41,6 +47,7 @@ public class CauldronFoundation extends YamlConfig implements ConfigSerializable
         name = getString("Name");
         lore = getStringArray("Lore");
 
+        
         if (isSet("Recipes")) {
             final List<SerializedMap> testList = getMapList("Recipes");
 
@@ -64,28 +71,28 @@ public class CauldronFoundation extends YamlConfig implements ConfigSerializable
 
     }
 
-    @Override
-    public SerializedMap serialize() {
-        final SerializedMap map = new SerializedMap();
-
-        map.put("Name", name);
-        map.put("Lore", lore);
-        map.put("TestItem", Recipe.class);
-
-        return map;
-    }
-    
-    public static class Recipe implements ConfigSerializable {
-
-        @Override
-        public SerializedMap serialize() {
-            Common.log("At least we tried to serialize this");
-            SerializedMap map = new SerializedMap();
-
-            map.put("this", "that");
-
-            return map;
-        }
-    }
+//    @Override
+//    public SerializedMap serialize() {
+//        final SerializedMap map = new SerializedMap();
+//
+//        map.put("Name", name);
+//        map.put("Lore", lore);
+//        map.put("TestItem", Recipe.class);
+//
+//        return map;
+//    }
+//
+//    public static class Recipe implements ConfigSerializable {
+//
+//        @Override
+//        public SerializedMap serialize() {
+//            Common.log("At least we tried to serialize this");
+//            SerializedMap map = new SerializedMap();
+//
+//            map.put("this", "that");
+//
+//            return map;
+//        }
+//    }
 
 }

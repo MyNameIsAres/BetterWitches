@@ -71,11 +71,12 @@ public class CauldronStorage {
         return this.configuration;
     }
 
-    public void restoreMap() {
-        this.getConfig().getConfigurationSection("cauldrons").getValues(true).forEach((key, value) -> {
-            getStringLocationMap().put(key, value.toString());
-        });
-    }
+    // Causes error if it's null
+//    public void restoreMap() {
+//        this.getConfig().getConfigurationSection("cauldrons").getValues(true).forEach((key, value) -> {
+//            getStringLocationMap().put(key, value.toString());
+//        });
+//    }
 
     public Location getLocationString(final String s) {
 //        if (s == null || s.trim() == "") {
