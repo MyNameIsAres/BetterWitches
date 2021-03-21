@@ -3,6 +3,7 @@ package org.geminicraft.betterwitch.witches.nmsgoals;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.server.v1_16_R2.EntityCreature;
+import net.minecraft.server.v1_16_R2.EntityInsentient;
 import net.minecraft.server.v1_16_R2.PathfinderGoal;
 import net.minecraft.server.v1_16_R2.PathfinderGoalMeleeAttack;
 import org.bukkit.entity.Entity;
@@ -20,13 +21,19 @@ public class MeleeAttackGoal implements GoalsInterface {
     @Getter
     Double damage = 1.0D; // Default
 
-    Entity entity;
+    @Getter
+    @Setter
+    boolean whatever;
 
-    public MeleeAttackGoal() {
+    EntityInsentient entity;
 
+    public MeleeAttackGoal(EntityInsentient entity, Double damage, boolean whatever) {
+        this.entity = entity;
+        this.damage = damage;
+        this.whatever = whatever;
     }
 
-    public MeleeAttackGoal(Entity entity, Double damage) {
+    public MeleeAttackGoal(EntityInsentient entity, Double damage) {
         this.entity = entity;
         this.damage = damage;
     }
@@ -35,6 +42,11 @@ public class MeleeAttackGoal implements GoalsInterface {
     public PathfinderGoal create() {
         return new PathfinderGoalMeleeAttack((EntityCreature) entity, damage, true);
 
+    }
+
+    @Override
+    public int availableArguments() {
+        return 2;
     }
 
 

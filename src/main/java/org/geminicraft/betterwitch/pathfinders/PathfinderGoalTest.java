@@ -44,10 +44,11 @@ public class PathfinderGoalTest extends PathfinderGoal {
         if (this.player == null) {
             Common.log("Is player null");
             return false;
-        } else if (this.testWitch.getDisplayName() == null) {
-//            Common.log("THis one?");
-            return false;
         }
+//        else if (this.testWitch.getDisplayName() == null) {
+////            Common.log("THis one?");
+//            return false;
+//        }
 //        else if (!(this.testWitch.getDisplayName().toString().contains(this.player.getName()))) {
 ////            Common.log("Thiiiiis one");
 //            return false;

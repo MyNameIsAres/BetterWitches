@@ -6,12 +6,14 @@ import net.minecraft.server.v1_16_R2.PathfinderGoal;
 import net.minecraft.server.v1_16_R2.PathfinderGoalSelector;
 import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
 import org.geminicraft.betterwitch.AIGoalsAnnotation;
+import org.geminicraft.betterwitch.ParamsFileHandler;
 import org.geminicraft.betterwitch.pathfinders.PathfinderGoalTest;
 import org.geminicraft.betterwitch.reflections.Reflections;
 import org.geminicraft.betterwitch.reflections.scanners.SubTypesScanner;
 import org.geminicraft.betterwitch.reflections.scanners.TypeAnnotationsScanner;
 import org.geminicraft.betterwitch.reflections.util.ClasspathHelper;
 import org.geminicraft.betterwitch.reflections.util.ConfigurationBuilder;
+import org.geminicraft.betterwitch.witches.model.CustomWitchBuilder;
 import org.geminicraft.betterwitch.witches.model.GoalsInterface;
 import org.mineacademy.fo.Common;
 
@@ -44,12 +46,14 @@ public class GoalAdder {
 
         Common.log(goals + " goals");
 
+
         if (goals == null) {
             Common.log("Do we get null here");
             return;
         }
 
         for (String item : goals) {
+            ParamsFileHandler paramsFileHandler = null;
             int priority = 0;
             String name;
             String[] splitItem = item.split(" ");
@@ -59,21 +63,52 @@ public class GoalAdder {
                 Common.log("*ERROR*");
             }
 
+
             if (this.goals.containsKey(splitItem[1])) {
-                Common.log("Or do we wenter");
+                Common.log("Or do we enter");
                 name = splitItem[1];
                 Class<? extends GoalsInterface> customClass = this.goals.get(name);
 
-                GoalsInterface pathfinderGoal = customClass.newInstance();
+                if (item.length() == 3) {
+                    paramsFileHandler = new ParamsFileHandler(item.toLowerCase());
+
+                }
 
 
-                entity.goalSelector.a(priority, pathfinderGoal.create());
+                try {
+                    Common.log("Please work");
+                    GoalsInterface testInterfaceItem = customClass.getConstructor(new Class[]{EntityInsentient.class, ParamsFileHandler.class}).
+                            newInstance(entity, new ParamsFileHandler(item.toLowerCase()));
+                    entity.goalSelector.a(priority, testInterfaceItem.create());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+//                GoalsInterface pathfinderGoal = customClass.newInstance(new Class[]{EntityInsentient.class}).;
+
+                /*
+                    pathfinderGoal.loadParams(String[] splitItems);
+
+                    def loadParams(String[] splitItems) {
+                        >> check for bracket {}
+                        >> read @variable
+                        >> check if the number of variables with @/w+
+                            matches the given amount set in the method getArgumentCount():int
+                        >> take away '@' symbol
+                        >> ensure variable name spelling is correct (speed: yes, sped: no)
+                        >>
+                    }
+                 */
+
+
+//                entity.goalSelector.a(priority, pathfinderGoal.create());
             } else {
                 Common.log("Maybe this");
             }
 
         }
-        selectPathfinder("followPlayer", entity, 0);
+//        selectPathfinder("followPlayer", entity, 0);
 
         Common.log("Do we get to this point");
     }
@@ -84,9 +119,11 @@ public class GoalAdder {
         that will be replaced later.
      */
     public void selectPathfinder(String name, EntityInsentient entityInsentient, int priority) {
+        Common.log(name + " name bit");
         switch (name) {
             case "followPlayer":
                 entityInsentient.goalSelector.a(priority, new PathfinderGoalTest(entityInsentient, 1.0, 5f));
+                System.out.println("this works!");
         }
 
 

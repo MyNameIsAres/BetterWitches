@@ -11,4 +11,10 @@ public class TestAbility implements GoalsInterface {
         return null;
     }
 
+    @Override
+    public int availableArguments() {
+        return 0;
+    }
+
+
 }
