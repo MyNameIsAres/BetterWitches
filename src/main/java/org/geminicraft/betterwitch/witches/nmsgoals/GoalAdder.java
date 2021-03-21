@@ -1,11 +1,10 @@
 package org.geminicraft.betterwitch.witches.nmsgoals;
 
 import net.minecraft.server.v1_16_R2.EntityInsentient;
-import net.minecraft.server.v1_16_R2.EntityWitch;
 import net.minecraft.server.v1_16_R2.PathfinderGoal;
 import net.minecraft.server.v1_16_R2.PathfinderGoalSelector;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
 import org.geminicraft.betterwitch.AIGoalsAnnotation;
+import org.geminicraft.betterwitch.ParamsFileHandler;
 import org.geminicraft.betterwitch.pathfinders.PathfinderGoalTest;
 import org.geminicraft.betterwitch.reflections.Reflections;
 import org.geminicraft.betterwitch.reflections.scanners.SubTypesScanner;
@@ -40,9 +39,11 @@ public class GoalAdder {
 
     }
 
+    // TODO Clean up method.
     public void addPathfinderGoals(EntityInsentient entity, List<String> goals) throws IllegalAccessException, InstantiationException {
 
         Common.log(goals + " goals");
+
 
         if (goals == null) {
             Common.log("Do we get null here");
@@ -50,6 +51,7 @@ public class GoalAdder {
         }
 
         for (String item : goals) {
+            ParamsFileHandler paramsFileHandler = null;
             int priority = 0;
             String name;
             String[] splitItem = item.split(" ");
@@ -59,23 +61,35 @@ public class GoalAdder {
                 Common.log("*ERROR*");
             }
 
+
             if (this.goals.containsKey(splitItem[1])) {
-                Common.log("Or do we wenter");
+                Common.log("Or do we enter");
                 name = splitItem[1];
                 Class<? extends GoalsInterface> customClass = this.goals.get(name);
 
-                GoalsInterface pathfinderGoal = customClass.newInstance();
+                if (item.length() == 3) {
+                    paramsFileHandler = new ParamsFileHandler(item.toLowerCase());
+                }
 
 
-                entity.goalSelector.a(priority, pathfinderGoal.create());
+                try {
+                    Common.log("Please work");
+                    GoalsInterface testInterfaceItem = customClass.getConstructor(new Class[]{EntityInsentient.class, ParamsFileHandler.class}).
+                            newInstance(entity, new ParamsFileHandler(item.toLowerCase()));
+                    entity.goalSelector.a(priority, testInterfaceItem.create());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             } else {
-                Common.log("Maybe this");
+                Common.log("We made an oopsie.");
             }
 
         }
-        selectPathfinder("followPlayer", entity, 0);
 
-        Common.log("Do we get to this point");
+        // TODO Uncomment when code for complexer path finders is finished
+//        selectPathfinder("followPlayer", entity, 0);
+
     }
 
 
@@ -84,20 +98,15 @@ public class GoalAdder {
         that will be replaced later.
      */
     public void selectPathfinder(String name, EntityInsentient entityInsentient, int priority) {
+        Common.log(name + " name bit");
         switch (name) {
             case "followPlayer":
                 entityInsentient.goalSelector.a(priority, new PathfinderGoalTest(entityInsentient, 1.0, 5f));
+                System.out.println("this works!");
         }
 
 
     }
-
-    /*
-
-
-
-     */
-
 
     @Deprecated // Only exists for testing purposes, to be deleted soon.
     public void addPathfinderGoals(int index, EntityInsentient entity, PathfinderGoal goal) throws IllegalAccessException, InstantiationException {

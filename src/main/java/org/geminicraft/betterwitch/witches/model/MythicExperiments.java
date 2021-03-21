@@ -110,6 +110,12 @@ class CustomGoal implements GoalsInterface {
 
     }
 
+    @Override
+    public int availableArguments() {
+        return 0;
+    }
+
+
 }
 
 

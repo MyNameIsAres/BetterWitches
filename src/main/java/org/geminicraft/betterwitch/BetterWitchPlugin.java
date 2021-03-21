@@ -1,14 +1,5 @@
 package org.geminicraft.betterwitch;
 
-import com.earth2me.essentials.Essentials;
-import com.google.common.reflect.Reflection;
-
-import net.minecraft.server.v1_16_R2.EntityInsentient;
-import net.minecraft.server.v1_16_R2.EntityWitch;
-import net.minecraft.server.v1_16_R2.PathfinderGoal;
-import net.minecraft.server.v1_16_R2.PathfinderGoalFloat;
-
-import org.bukkit.Location;
 import org.geminicraft.betterwitch.cauldron.CauldronCache;
 import org.geminicraft.betterwitch.cauldron.CauldronRegister;
 import org.geminicraft.betterwitch.cauldron.CauldronStorage;
@@ -18,8 +9,8 @@ import org.geminicraft.betterwitch.commands.*;
 
 //import org.geminicraft.betterwitch.reflections.Reflections;
 import org.geminicraft.betterwitch.reflections.Reflections;
-import org.geminicraft.betterwitch.util.TestFeatures;
 import org.geminicraft.betterwitch.witches.WitchPotionEffect;
+import org.geminicraft.betterwitch.witches.WitchRegister;
 import org.geminicraft.betterwitch.witches.abilities.WitchAbilities;
 import org.geminicraft.betterwitch.witches.events.WitchListener;
 
@@ -40,40 +31,24 @@ public class BetterWitchPlugin extends SimplePlugin {
     public CauldronCache cache;
 
 
-//    Map<Integer, PathfinderGoal> map = new HashMap<>();
-//
-//    public void addToMap(int priority, PathfinderGoal goal) {
-//        map.put(priority, goal);
-//    }
-//
-//    public void loopOver() {
-//        map.forEach((priority, goal) -> {
-//            Common.log(goal.toString() + " I am the goal");
-//
-//        });
-//    }
-
     @Override
     protected void onPluginStart() {
-//        Reflections fu = new Reflections();
+
+        Common.log("########################");
+        Common.log("Creating the witches now!");
+        WitchRegister.fetchNames();
+        Common.log("########################");
+        Common.log(" ");
+        Common.log("########################");
+        WitchRegister.getInstance().loadWitches();
+        Common.log("########################");
+        Common.log(" ");
+        Common.log("########################");
+        Common.log("Testing for witches now!");
+        WitchRegister.getInstance().testForWitches();
+        Common.log("########################");
 
 
-//        Reflections reflections = new Reflections("org.geminicraft.betterwitch.witches.model");
-//
-//        Reflections reflections = new Reflections("org.geminicraft.betterwitch.witches.model");
-//        Set<Class<? extends GoalsInterface>> classes = reflections.getSubTypesOf(GoalsInterface.class);
-//        Common.log(classes + " classes");
-//
-//        Package test = BetterWitchPlugin.class.getPackage();
-//        Common.log(test + " test");
-
-
-//        Reflections reflections = new Reflections("org.geminicraft.betterwitch.witches.model");
-
-//        Reflections reflections = new Reflections("org.geminicraft.betterwitch.witches.model");
-//        Set<Class<? extends GoalsInterface>> classes = reflections.getSubTypesOf(GoalsInterface.class);
-//        Common.log(classes + " classes");
-//
 //        this.storage = new CauldronStorage(this);
 //        storage.restoreMap();
 
@@ -98,6 +73,7 @@ public class BetterWitchPlugin extends SimplePlugin {
 
     }
 
+    // TODO: Refactor / implement new version on Cauldron update
     @Override
     protected void onPluginStop() {
 //        if (!storage.getStringLocationMap().isEmpty()) {

@@ -2,26 +2,43 @@ package org.geminicraft.betterwitch.witches.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.server.v1_16_R2.PathfinderGoalSelector;
-import org.bukkit.Location;
-import org.geminicraft.betterwitch.FileHandable;
+import org.bukkit.configuration.ConfigurationSection;
 import org.mineacademy.fo.Common;
-import org.mineacademy.fo.collection.SerializedMap;
-import org.mineacademy.fo.model.ConfigSerializable;
 import org.mineacademy.fo.settings.SimpleYaml;
 import org.mineacademy.fo.settings.YamlConfig;
 
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CustomWitchBuilder extends YamlConfig {
-
+    
     public CustomWitchBuilder(String name) {
         this.name = name;
 
         loadConfiguration(null, "custom-witches/" + name + (!name.endsWith(".yml") ? ".yml" : ""));
+
+    }
+
+    // Should be used when creating from the game only.
+    public void setPrimaryTitle(String path) {
+        if (isSet(path)) {
+            getConfig().set(path, name);
+        }
+    }
+
+    public ConfigurationSection getSection(String path) {
+        if (isSet(path)) {
+            return getConfig().getConfigurationSection(path);
+        }
+        return null;
+    }
+
+    public String getFileStringDefault(String path, String defaultValue) {
+        if (isSet(path)) {
+            return this.getConfig().getString(path, defaultValue);
+        }
+        return null;
     }
 
     public String getFileString(String path) {
@@ -80,7 +97,7 @@ public class CustomWitchBuilder extends YamlConfig {
 
         return null;
     }
-    
+
     @Getter
     @Setter
     private String name;
