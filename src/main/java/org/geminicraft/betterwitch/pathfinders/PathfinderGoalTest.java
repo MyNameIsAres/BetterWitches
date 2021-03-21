@@ -32,15 +32,13 @@ public class PathfinderGoalTest extends PathfinderGoal {
 
     @Override
     public boolean a() {
-        Common.log("ffs");
-        Common.log("Entering A..");
+
         // Will start the pathfinding goal if it is true
         // Runs every tick (0.05 seconds)
 
 
         this.player = this.testWitch.getGoalTarget();
-        Common.log(testWitch.getGoalTarget() + " just testing to see if this exists at all tbh");
-//        Common.log(this.player.toString());
+
         if (this.player == null) {
             Common.log("Is player null");
             return false;

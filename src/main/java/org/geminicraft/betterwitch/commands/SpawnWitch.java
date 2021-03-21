@@ -26,13 +26,10 @@ public class SpawnWitch extends SimpleCommand {
         NewTestWitch witch = new NewTestWitch(location, "Charlie", player);
 
 
-//        witch.setCustomName(new ChatComponentText(ChatColor.GREEN + "Nature BITCH"));
-
-        Common.log(player + " player ");
-
+//        witch.setCustomName(new ChatComponentText(ChatColor.GREEN + "Nature Witch"));
+        
         world.addEntity(witch);
 //        witch.spawnWitch(location);
-        Common.log("New Witch");
 
 
     }

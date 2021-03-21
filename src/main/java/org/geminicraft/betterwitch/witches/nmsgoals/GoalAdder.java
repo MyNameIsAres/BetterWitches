@@ -1,10 +1,8 @@
 package org.geminicraft.betterwitch.witches.nmsgoals;
 
 import net.minecraft.server.v1_16_R2.EntityInsentient;
-import net.minecraft.server.v1_16_R2.EntityWitch;
 import net.minecraft.server.v1_16_R2.PathfinderGoal;
 import net.minecraft.server.v1_16_R2.PathfinderGoalSelector;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
 import org.geminicraft.betterwitch.AIGoalsAnnotation;
 import org.geminicraft.betterwitch.ParamsFileHandler;
 import org.geminicraft.betterwitch.pathfinders.PathfinderGoalTest;
@@ -13,7 +11,6 @@ import org.geminicraft.betterwitch.reflections.scanners.SubTypesScanner;
 import org.geminicraft.betterwitch.reflections.scanners.TypeAnnotationsScanner;
 import org.geminicraft.betterwitch.reflections.util.ClasspathHelper;
 import org.geminicraft.betterwitch.reflections.util.ConfigurationBuilder;
-import org.geminicraft.betterwitch.witches.model.CustomWitchBuilder;
 import org.geminicraft.betterwitch.witches.model.GoalsInterface;
 import org.mineacademy.fo.Common;
 
@@ -42,6 +39,7 @@ public class GoalAdder {
 
     }
 
+    // TODO Clean up method.
     public void addPathfinderGoals(EntityInsentient entity, List<String> goals) throws IllegalAccessException, InstantiationException {
 
         Common.log(goals + " goals");
@@ -71,7 +69,6 @@ public class GoalAdder {
 
                 if (item.length() == 3) {
                     paramsFileHandler = new ParamsFileHandler(item.toLowerCase());
-
                 }
 
 
@@ -84,33 +81,15 @@ public class GoalAdder {
                     e.printStackTrace();
                 }
 
-
-//                GoalsInterface pathfinderGoal = customClass.newInstance(new Class[]{EntityInsentient.class}).;
-
-                /*
-                    pathfinderGoal.loadParams(String[] splitItems);
-
-                    def loadParams(String[] splitItems) {
-                        >> check for bracket {}
-                        >> read @variable
-                        >> check if the number of variables with @/w+
-                            matches the given amount set in the method getArgumentCount():int
-                        >> take away '@' symbol
-                        >> ensure variable name spelling is correct (speed: yes, sped: no)
-                        >>
-                    }
-                 */
-
-
-//                entity.goalSelector.a(priority, pathfinderGoal.create());
             } else {
-                Common.log("Maybe this");
+                Common.log("We made an oopsie.");
             }
 
         }
+
+        // TODO Uncomment when code for complexer path finders is finished
 //        selectPathfinder("followPlayer", entity, 0);
 
-        Common.log("Do we get to this point");
     }
 
 
@@ -128,13 +107,6 @@ public class GoalAdder {
 
 
     }
-
-    /*
-
-
-
-     */
-
 
     @Deprecated // Only exists for testing purposes, to be deleted soon.
     public void addPathfinderGoals(int index, EntityInsentient entity, PathfinderGoal goal) throws IllegalAccessException, InstantiationException {

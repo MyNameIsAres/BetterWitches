@@ -1,10 +1,8 @@
 package org.geminicraft.betterwitch.witches;
 
 import lombok.Getter;
-import net.minecraft.server.v1_16_R2.World;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.geminicraft.betterwitch.witches.model.NewTestWitch;
 import org.mineacademy.fo.Common;
 import org.mineacademy.fo.FileUtil;
@@ -24,7 +22,7 @@ public class WitchRegister {
         for (File file : FileUtil.getFiles("custom-witches", "yml")) {
 
             Common.log(file.getName() + " this goes fine");
-//            witchList.add(new NewTestWitch(new Location(Bukkit.getServer().getWorlds().get(0), 0, 0, 0), file.getName()));
+            witchList.add(new NewTestWitch(new Location(Bukkit.getServer().getWorlds().get(0), 0, 0, 0), file.getName()));
 
             Common.log("Adding does not " + witchList);
         }
@@ -38,8 +36,7 @@ public class WitchRegister {
         }
         return null;
     }
-
-
+    
     public void testForWitches() {
         for (NewTestWitch witch : witchList) {
             Common.log(witch.getName());

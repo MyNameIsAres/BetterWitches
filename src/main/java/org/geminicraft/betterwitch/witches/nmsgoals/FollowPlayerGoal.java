@@ -45,7 +45,7 @@ public class FollowPlayerGoal implements GoalsInterface {
         Common.log(builder.getFileStringList("GoalSelectors"));
 
         Common.log(test + " Hey, I am the test!");
-
+        
 
     }
 

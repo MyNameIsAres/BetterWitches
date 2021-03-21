@@ -31,35 +31,22 @@ public class BetterWitchPlugin extends SimplePlugin {
     public CauldronCache cache;
 
 
-//    Map<Integer, PathfinderGoal> map = new HashMap<>();
-//
-//    public void addToMap(int priority, PathfinderGoal goal) {
-//        map.put(priority, goal);
-//    }
-//
-//    public void loopOver() {
-//        map.forEach((priority, goal) -> {
-//            Common.log(goal.toString() + " I am the goal");
-//
-//        });
-//    }
-
     @Override
     protected void onPluginStart() {
 
-//        Common.log("########################");
-//        Common.log("Creating the witches now!");
-//        WitchRegister.fetchNames();
-//        Common.log("########################");
-//        Common.log(" ");
-//        Common.log("########################");
-//        WitchRegister.getInstance().loadWitches();
-//        Common.log("########################");
-//        Common.log(" ");
-//        Common.log("########################");
-//        Common.log("Testing for witches now!");
-//        WitchRegister.getInstance().testForWitches();
-//        Common.log("########################");
+        Common.log("########################");
+        Common.log("Creating the witches now!");
+        WitchRegister.fetchNames();
+        Common.log("########################");
+        Common.log(" ");
+        Common.log("########################");
+        WitchRegister.getInstance().loadWitches();
+        Common.log("########################");
+        Common.log(" ");
+        Common.log("########################");
+        Common.log("Testing for witches now!");
+        WitchRegister.getInstance().testForWitches();
+        Common.log("########################");
 
 
 //        this.storage = new CauldronStorage(this);
@@ -86,6 +73,7 @@ public class BetterWitchPlugin extends SimplePlugin {
 
     }
 
+    // TODO: Refactor / implement new version on Cauldron update
     @Override
     protected void onPluginStop() {
 //        if (!storage.getStringLocationMap().isEmpty()) {
