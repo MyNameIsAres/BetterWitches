@@ -37,6 +37,10 @@
   </build>
   <repositories>
     <repository>
+      <id>sk89q-repo</id>
+      <url>https://maven.enginehub.org/repo/</url>
+    </repository>
+    <repository>
       <id>spigotmc-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
     </repository>
@@ -50,6 +54,12 @@
     </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>com.sk89q.worldguard</groupId>
+      <artifactId>worldguard-bukkit</artifactId>
+      <version>7.0.4-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-vfs</artifactId>
@@ -86,6 +96,6 @@
     <main.class>org.geminicraft.betterwitch.BetterWitchPlugin</main.class>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <foundation.version>5.7.6</foundation.version>
+    <foundation.version>5.8.1</foundation.version>
   </properties>
 </project>

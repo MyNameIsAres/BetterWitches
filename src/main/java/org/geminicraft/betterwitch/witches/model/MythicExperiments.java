@@ -85,7 +85,7 @@ class CustomGoal implements GoalsInterface {
     @Getter
     String goalAlias = "customGoal";
 
-    EntityInsentient entityInsentient;
+    NewTestWitch entityInsentient;
 
     Entity entity;
 
@@ -97,7 +97,7 @@ class CustomGoal implements GoalsInterface {
 
     }
 
-    public CustomGoal(EntityInsentient entityInsentient, Integer speed, Integer distance) {
+    public CustomGoal(NewTestWitch entityInsentient, Integer speed, Integer distance) {
         this.entityInsentient = entityInsentient;
         this.speed = speed;
         this.distance = distance;
@@ -108,11 +108,6 @@ class CustomGoal implements GoalsInterface {
     public PathfinderGoal create() {
         return new PathfinderGoalTest(entityInsentient, speed, distance);
 
-    }
-
-    @Override
-    public int availableArguments() {
-        return 0;
     }
 
 

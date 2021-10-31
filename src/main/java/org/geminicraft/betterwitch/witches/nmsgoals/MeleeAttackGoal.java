@@ -44,10 +44,5 @@ public class MeleeAttackGoal implements GoalsInterface {
 
     }
 
-    @Override
-    public int availableArguments() {
-        return 2;
-    }
-
 
 }
