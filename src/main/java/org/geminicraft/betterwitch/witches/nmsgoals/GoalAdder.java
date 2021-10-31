@@ -12,6 +12,7 @@ import org.geminicraft.betterwitch.reflections.scanners.TypeAnnotationsScanner;
 import org.geminicraft.betterwitch.reflections.util.ClasspathHelper;
 import org.geminicraft.betterwitch.reflections.util.ConfigurationBuilder;
 import org.geminicraft.betterwitch.witches.model.GoalsInterface;
+import org.geminicraft.betterwitch.witches.model.NewTestWitch;
 import org.mineacademy.fo.Common;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class GoalAdder {
     }
 
     // TODO Clean up method.
-    public void addPathfinderGoals(EntityInsentient entity, List<String> goals) throws IllegalAccessException, InstantiationException {
+    public void addPathfinderGoals(NewTestWitch entity, List<String> goals) throws IllegalAccessException, InstantiationException {
 
         Common.log(goals + " goals");
 
@@ -74,7 +75,7 @@ public class GoalAdder {
 
                 try {
                     Common.log("Please work");
-                    GoalsInterface testInterfaceItem = customClass.getConstructor(new Class[]{EntityInsentient.class, ParamsFileHandler.class}).
+                    GoalsInterface testInterfaceItem = customClass.getConstructor(new Class[]{NewTestWitch.class, ParamsFileHandler.class}).
                             newInstance(entity, new ParamsFileHandler(item.toLowerCase()));
                     entity.goalSelector.a(priority, testInterfaceItem.create());
                 } catch (Exception e) {
@@ -97,7 +98,7 @@ public class GoalAdder {
         This method has a switch statement for the moment. It's an intentional design
         that will be replaced later.
      */
-    public void selectPathfinder(String name, EntityInsentient entityInsentient, int priority) {
+    public void selectPathfinder(String name, NewTestWitch entityInsentient, int priority) {
         Common.log(name + " name bit");
         switch (name) {
             case "followPlayer":

@@ -2,6 +2,7 @@ package org.geminicraft.betterwitch.pathfinders;
 
 import net.minecraft.server.v1_16_R2.*;
 import org.geminicraft.betterwitch.AIGoalsAnnotation;
+import org.geminicraft.betterwitch.witches.model.NewTestWitch;
 import org.mineacademy.fo.Common;
 
 import java.util.EnumSet;
@@ -10,7 +11,7 @@ import java.util.EnumSet;
 @AIGoalsAnnotation(name = "testAbility", description = "Please fucking work")
 public class PathfinderGoalTest extends PathfinderGoal {
 
-    private final EntityInsentient testWitch;
+    private final NewTestWitch testWitch;
     private EntityLiving player;
 
     private final double speed;
@@ -20,13 +21,12 @@ public class PathfinderGoalTest extends PathfinderGoal {
     private double y;
     private double z;
 
-    public PathfinderGoalTest(EntityInsentient testWitch, double speed, float distanceOwnerAndCreature) {
+    public PathfinderGoalTest(NewTestWitch testWitch, double speed, float distanceOwnerAndCreature) {
         Common.log("Testing custom goal");
         this.testWitch = testWitch;
         this.speed = speed;
         this.distanceOwnerAndCreature = distanceOwnerAndCreature;
         this.a(EnumSet.of(Type.MOVE));
-
     }
 
 
